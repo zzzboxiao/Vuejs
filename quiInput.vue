@@ -1,18 +1,9 @@
-<!--
-    <input v-model="searchText">
-    等价于：
-    <input v-bind:value="searchText" v-on:input="searchText = $event.target.value">
-    总结:给组件添加 v-model 属性时，默认会把 value 作为组件的属性，然后把 'input' 值作为给组件绑定事件时的事件名
-    因此,要使用v-model,监听blur事件,但必须触发($emit) input事件,此时操作input会触发onblur,而不是oninput事件
-    使用v-model包含value属性
--->
 <template>
   <div class="input-box">
     <div class="input-box-add">
       <span class="input-box-name">{{inputName}}</span>
       <input :type="inputType" @blur="$emit('input', $event.target.value)" class="input-box-el">
     </div>
-    <!-- <input :type="inputType" :value="value" @blur="$emit('input', $event.target.value)"> -->
     <span class="input-box-msg">{{msg}}</span>
   </div>
 </template>
@@ -24,30 +15,43 @@ export default {
 </script>
 <style scoped>
   .input-box{
-    width: 400px;
-    height: 100px;
+    position: relative;    
   }
   .input-box-add{
-    width: 100%;
-    height: 40px;
+    width: 500px;
+    height: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    -webkit-align-items:center;
   }
   .input-box-name{
-    font-size: 20px;
-    padding-right: 10px;
+    position: absolute;
+    font-size: 16px;
+    top:3px;
+    right: 370px;
+    /* padding-left: 34px; */
   }
   .input-box-el{
-    width: 300px;
-    height: 36px;
-    padding-left: 8px;
-    border: solid 2px #d2d2d2;
-    border-radius: 5px;
+    position: absolute;
+    width: 60%;
+    height: 30px;
+    margin-left: 20px;
+    top: 0;
+    right: 50px;
+    padding-left: 7px;    
+    border: solid 1px #d2d2d2;
+    border-radius: 3px;
   }
   .input-box-el:hover{
     border: solid 2px #2785a7;
   }
   .input-box-msg{
+    position: absolute;
     font-size: 12px;
     color: red;
-    margin-left: 75px;
+    top: 32px;
+    left: 150px;
+    /* margin-left: 150px; */
   }
 </style>
